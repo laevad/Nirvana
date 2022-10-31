@@ -1,3 +1,7 @@
+<?php
+session_start();
+require 'dbcon.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,7 +38,7 @@
 		<div class="collapse navbar-collapse" id="main-navigation">
 			<ul class="navbar-nav">
 				<li class="nav-item">
-					<a class="nav-link" href="index.html">Home</a>
+					<a class="nav-link" href="index.php">Home</a>
 				</li>
 
 				<li class="nav-item">
@@ -50,18 +54,18 @@
 				</li>
 
 				<li class="nav-item">
-					<a class="nav-link" href="">Account</a>
+                    <a class="nav-link" href="collection.php">Account</a>
 				</li>
 			</ul>
 
-			<form class="d-flex">
-				<div class="input-group">
-					<input type="text" id="textfield" class="form-control" placeholder="Search	" />
-					<button type="button" class="btn btn-secondary">
-						<i class="fa-solid fa-magnifying-glass"></i>
-					</button>
-				</div>
-			</form>
+            <form class="d-flex" action="search.php" METHOD="post">
+                <div class="input-group">
+                    <input type="text" id="searchField" name="searchField" class="form-control" placeholder="Search	"/>
+                    <button type="submit" class="btn btn-secondary">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+            </form>
 		</div>
 	</nav>
 	<!--NAVIGATION BAR ENDS HERE-->
@@ -359,5 +363,24 @@
 
     <!--CUSTOM JAVASCRIPT-->
     <script src="main.js"></script>
+    <script>
+        //  searchbar autocomplete (jquery)
+        <?php $query = "SELECT book_title FROM books order by book_title ASC";
+        $query_run = mysqli_query($con, $query);
+        ?>
+        $(function () {
+            var bdata = [
+                <?php foreach ($query_run as $book){ ?>
+                <?php echo  '"'.html_entity_decode($book['book_title']).'",';?>
+                <?php  } ?>
+            ];
+
+            $("#searchField").autocomplete({
+                source:bdata
+            });
+
+        });
+
+    </script>
 </body>
 </html>

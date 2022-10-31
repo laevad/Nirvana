@@ -48,7 +48,7 @@ require 'dbcon.php';
     <div class="collapse navbar-collapse" id="main-navigation">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link" href="index.php">Home</a>
             </li>
 
             <li class="nav-item">
@@ -56,32 +56,22 @@ require 'dbcon.php';
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="about.html">About</a>
+                <a class="nav-link" href="about.php">About</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="collection.php">Collection</a>
+                    <a class="nav-link" href="collection.php">Collection</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="">Account</a>
+                <a class="nav-link" href="collection.php">Account</a>
             </li>
         </ul>
-        <?php
-        if (isset($_POST['searchField'])){
-            $search = $_POST['searchField'];
-            $query = "SELECT * FROM books where book_title like '%$search%'";
-            $query_run = mysqli_query($con, $query);
-            echo  $query_run;
-        }
 
-
-
-        ?>
-        <form class="d-flex" action="" METHOD="post">
+        <form class="d-flex" action="search.php" METHOD="post">
             <div class="input-group">
                 <input type="text" id="searchField" name="searchField" class="form-control" placeholder="Search	"/>
-                <button type="button" class="btn btn-secondary">
+                <button type="submit" class="btn btn-secondary">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
             </div>
@@ -108,7 +98,7 @@ require 'dbcon.php';
                     ?>
                     <div class="col product-item mx-auto">
                         <div class="product-img">
-                            <a href="collection-details.php?id=<?= $book['id']; ?>&genre=Fantasy" target="_new"> <img src="Fantasy/<?= $book['book_pic'] ?>" alt="" class="img-fluid d-block mx-auto"></a>
+                            <a href="collection-details.php?id=<?= $book['id']; ?>&genre=Fantasy" > <img src="<?= $book['book_pic'] ?>" alt="" class="img-fluid d-block mx-auto"></a>
                             <span class="heart-icon">
                             <i class="far fa-heart"></i>
                         </span>
@@ -124,7 +114,7 @@ require 'dbcon.php';
 
                         <div class="product-info p-3">
                             <span class="product-type"><?= $book['book_author'] ?></span>
-                            <a href="collection-details.php?id=<?= $book['id']; ?>&genre=Fantasy" target="_new" class="d-block text-dark text-decoration-none py-2 product-name">
+                            <a href="collection-details.php?id=<?= $book['id']; ?>&genre=Fantasy"  class="d-block text-dark text-decoration-none py-2 product-name">
                                 <?= $book['book_title'] ?></a>
                             <div class="rating d-flex mt-1">
                             <span>
@@ -170,7 +160,7 @@ require 'dbcon.php';
                     ?>
                     <div class="col product-item mx-auto">
                         <div class="product-img">
-                            <a  href="collection-details.php?id=<?= $book['id']; ?>&genre=Mystery" target="_new"> <img src="Mystery/<?= $book['book_pic'] ?>" alt="" class="img-fluid d-block mx-auto"></a>
+                            <a  href="collection-details.php?id=<?= $book['id']; ?>&genre=Mystery" > <img src="<?= $book['book_pic'] ?>" alt="" class="img-fluid d-block mx-auto"></a>
 
                             <span class="heart-icon">
                             <i class="far fa-heart"></i>
@@ -187,7 +177,7 @@ require 'dbcon.php';
 
                         <div class="product-info p-3">
                             <span class="product-type"><?= $book['book_author'] ?></span>
-                            <a href="collection-details.php?id=<?= $book['id']; ?>&genre=Mystery" target="_new" class="d-block text-dark text-decoration-none py-2 product-name">
+                            <a href="collection-details.php?id=<?= $book['id']; ?>&genre=Mystery" class="d-block text-dark text-decoration-none py-2 product-name">
                                 <?= $book['book_title'] ?></a>
                             <div class="rating d-flex mt-1">
                             <span>
@@ -233,7 +223,7 @@ require 'dbcon.php';
                     ?>
                     <div class="col product-item mx-auto">
                         <div class="product-img">
-                            <a href="collection-details.php?id=<?= $book['id']; ?>&genre=Horror" target="_new">  <img src="Horror/<?= $book['book_pic'] ?>" alt="" class="img-fluid d-block mx-auto"></a>
+                            <a href="collection-details.php?id=<?= $book['id']; ?>&genre=Horror" >  <img src="<?= $book['book_pic'] ?>" alt="" class="img-fluid d-block mx-auto"></a>
                             <span class="heart-icon">
                             <i class="far fa-heart"></i>
                         </span>
@@ -249,7 +239,7 @@ require 'dbcon.php';
 
                         <div class="product-info p-3">
                             <span class="product-type"><?= $book['book_author'] ?></span>
-                            <a href="collection-details.php?id=<?= $book['id']; ?>&genre=Horror" target="_new" class="d-block text-dark text-decoration-none py-2 product-name">
+                            <a href="collection-details.php?id=<?= $book['id']; ?>&genre=Horror"  class="d-block text-dark text-decoration-none py-2 product-name">
                                 <?= $book['book_title'] ?></a>
                             <div class="rating d-flex mt-1">
                             <span>
@@ -295,7 +285,7 @@ require 'dbcon.php';
                     ?>
                     <div class="col product-item mx-auto">
                         <div class="product-img">
-                            <a href="collection-details.php?id=<?= $book['id']; ?>&genre=Fiction" target="_new"><img src="Fiction/<?= $book['book_pic'] ?>" alt="" class="img-fluid d-block mx-auto"></a>
+                            <a href="collection-details.php?id=<?= $book['id']; ?>&genre=Fiction"><img src="<?= $book['book_pic'] ?>" alt="" class="img-fluid d-block mx-auto"></a>
                             <span class="heart-icon">
                             <i class="far fa-heart"></i>
                         </span>
@@ -311,7 +301,7 @@ require 'dbcon.php';
 
                         <div class="product-info p-3">
                             <span class="product-type"><?= $book['book_author'] ?></span>
-                            <a href="collection-details.php?id=<?= $book['id']; ?>&genre=Fiction" target="_new" class="d-block text-dark text-decoration-none py-2 product-name">
+                            <a href="collection-details.php?id=<?= $book['id']; ?>&genre=Fiction"  class="d-block text-dark text-decoration-none py-2 product-name">
                                 <?= $book['book_title'] ?></a>
                             <div class="rating d-flex mt-1">
                             <span>
@@ -357,8 +347,8 @@ require 'dbcon.php';
                     ?>
                     <div class="col product-item mx-auto">
                         <div class="product-img">
-                            <a href="collection-details.php?id=<?= $book['id']; ?>&genre=NonFiction" target="_new">
-                                <img src="NonFiction/<?= $book['book_pic'] ?>" alt="" class="img-fluid d-block mx-auto">
+                            <a href="collection-details.php?id=<?= $book['id']; ?>&genre=NonFiction">
+                                <img src="<?= $book['book_pic'] ?>" alt="" class="img-fluid d-block mx-auto">
                             </a>
                             <span class="heart-icon">
                             <i class="far fa-heart"></i>
@@ -374,7 +364,7 @@ require 'dbcon.php';
                         </div>
                         <div class="product-info p-3">
                             <span class="product-type"><?= $book['book_author'] ?></span>
-                            <a href="collection-details.php?id=<?= $book['id']; ?>&genre=NonFiction" target="_new" class="d-block text-dark text-decoration-none py-2 product-name">
+                            <a href="collection-details.php?id=<?= $book['id']; ?>&genre=NonFiction"  class="d-block text-dark text-decoration-none py-2 product-name">
                                 <?= $book['book_title'] ?></a>
 
                         </div>
@@ -478,7 +468,7 @@ require 'dbcon.php';
     $(function () {
         var bdata = [
             <?php foreach ($query_run as $book){ ?>
-            <?php echo  '"'.$book['book_title'].'",';?>
+            <?php echo  '"'.html_entity_decode($book['book_title']).'",';?>
             <?php  } ?>
         ];
 

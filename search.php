@@ -45,7 +45,7 @@ require 'dbcon.php';
     <div class="collapse navbar-collapse" id="main-navigation">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="index.php">Home</a>
+                <a class="nav-link" href="#home">Home</a>
             </li>
 
             <li class="nav-item">
@@ -65,9 +65,9 @@ require 'dbcon.php';
             </li>
         </ul>
 
-        <form class="d-flex" action="search.php" METHOD="post">
+        <form class="d-flex" action="" METHOD="post">
             <div class="input-group">
-                <input type="text" id="searchField" name="searchField" class="form-control" placeholder="Search	"/>
+                <input type="text" id="searchField" name="searchField" class="form-control searchField" placeholder="Search	" />
                 <button type="submit" class="btn btn-secondary">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
@@ -75,62 +75,63 @@ require 'dbcon.php';
         </form>
     </div>
 </nav>
-<!--NAVIGATION BAR ENDS HERE-->
-
-
-
-
-<div class="" style="height: 45px"></div>
-<div class="row" style="margin-top: 75px">
-    <div class="col-md-8 mx-auto" style="padding: 20px">
-        <div class="card" style="background-color: #56382D;" >
-            <div class="card-header">
-                <h2 class="text-white"><?= $_GET['genre']?></h2>
-            </div>
-            <div class="card-body" style="padding: 40px">
-                <?php
-                if(isset($_GET['id']) && isset($_GET['genre']))
-                {
-                    $book = mysqli_real_escape_string($con, $_GET['id']);
-                    $query = "SELECT * FROM books WHERE id='$book' ";
-                    $query_run = mysqli_query($con, $query);
-
-                    if(mysqli_num_rows($query_run) > 0)
-                    {
-                        $bookDetails = mysqli_fetch_array($query_run);
-                        ?>
-                        <div class="" >
-                            <div class="product-img"  style="width: 200px;float: left; margin-right: 30px; " >
-                                <img src="<?= $bookDetails['book_pic'] ?>"  alt="" class="img-fluid d-block mx-auto">
-                            </div>
-                            <div class="" style="  margin-left: 30px;">
-                                <p class="text-white" style="font-size: 40px"><?= $bookDetails['book_title'] ?></p>
-                                <p class="text-white" style="font-size: 20px;margin-top: 5%"><?= $bookDetails['book_author'] ?></p>
-<!--                                <p class="text-white   product-name" style="font-size: 20px; margin-top: 5%">--><?//= $bookDetails['book_review'] ?><!-- reviews</p>-->
-                            </div>
-                        </div>
+<div class="">
+    <?php
+    ?>
+    <div class="row g-4 my-5 mx-auto owl-theme">
+        <?php
+        if (isset($_POST['searchField'])){
+            $search = $_POST['searchField'];
+//            $search = str_replace($search,"'", "\\'");
+            if (preg_match('/[\']/', $search))
+            {
+                $search = str_replace($search,"'", "\\'");
+            }
+            $query = "SELECT * FROM books where book_title like '%".$search."%'";
+            $res = mysqli_query($con, $query);
+            if (mysqli_num_rows($res) > 0) {
+                foreach ($res as $book) {
+                    ?>
+                    <div class="col " style="width: 200px">
+                        <div class="product-img" style="width: 200px">
+                            <a href="collection-details.php?id=<?= $book['id']; ?>&genre=NonFiction" >
+                                <img src="<?= $book['book_pic'] ?>"  alt="" class="img-fluid d-block mx-auto">
+                            </a>
+                            <span class="heart-icon">
+                            <i class="far fa-heart"></i>
+                        </span>
 
                         </div>
-                        <?php
-                    }
-                    else
-                    {
-                        echo "<h4>No Such Id Found</h4>";
-                    }
+                        <div class="product-info p-3">
+                            <span class="product-type"><?= $book['book_author'] ?></span>
+                            <a href="collection-details.php?id=<?= $book['id']; ?>&genre=NonFiction" class="d-block text-dark text-decoration-none py-2 product-name">
+                                <?= $book['book_title'] ?></a>
+
+                        </div>
+
+                    </div>
+                    <?php
                 }
-                ?>
-            </div>
-        </div>
+            } else {
+                echo "<h5> No Record Found </h5>";
+            }
+        }
+        ?>
     </div>
-<div class="" style="height: 100px"></div>
+</div>
+<!--NAVIGATION BAR ENDS HERE-->
+<div class="" style="margin-top: 70px"></div>
+<div class="row p-5" style="margin-top: 50px">
+
+</div>
+<div class="" style="margin-top: 200px"></div>
 <!--FOOTER SECTION STARTS HERE-->
 <footer class="text-center text-white" style="background-color: #56382D" id="footer">
     <div class="container">
         <section class="inq">
             <div class="row d-flex justify-content-center pt-4">
                 <div class="col-lg-8">
-                    <h2 class="text-uppercase font-weight-bold text-decoration-none text-white">Contact the
-                        Enquiry Service</h2>
+                    <h2 class="text-uppercase font-weight-bold text-decoration-none text-white">Results</h2>
                 </div>
             </div>
         </section>
@@ -208,11 +209,11 @@ require 'dbcon.php';
     $(function () {
         var bdata = [
             <?php foreach ($query_run as $book){ ?>
-            <?php echo  '"'.html_entity_decode($book['book_title']).'",';?>
+            <?php echo  '"'.$book['book_title'].'",';?>
             <?php  } ?>
         ];
 
-        $("#searchField").autocomplete({
+        $(".searchField").autocomplete({
             source:bdata
         });
 
