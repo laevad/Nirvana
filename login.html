@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WIT Studio</title>
+
+    <!--FAVICON-->
+    <link rel="icon" type="image/x-icon" href="logo-white.png">
+
+    <!--BOOTSTRAP CDN FOR CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!--FONTAWESOME CDN FOR ICONS-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+
+    <!--CUSTOM CSS-->
+    <link rel="stylesheet" type="text/css" href="login.css"/>
+	<link rel="stylesheet" type="text/css" href="main.css"/>
+    
+    <!--INTERNAL CSS-->	
+	<style>
+	body {background-image: url("loginbg.gif");
+          background-size: cover;
+          background-position: center;
+          position: relative;}
+    </style>
+</head>
+
+<body> 
+    <!--NAVIGATION BAR STARTS HERE-->
+    <nav class="navbar navbar-expand-md navbar-default bg-dark fixed-top">
+        <a class="navbar-brand">
+            <img src="logo-white.png" width="80" height="45" class="d-inline-block align-top" alt=""/>
+        </a>
+
+        <div class="collapse navbar-collapse" id="main-navigation">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#home">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#footer">Contact</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="collection.php">Collection</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="">Log in</a>
+                </li>
+            </ul>
+            
+            <form class="d-flex">
+                <div class="input-group">
+                    <input type="text" id="textfield" class="form-control" placeholder="Search	" />
+                    <button type="button" class="btn btn-secondary">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </nav>
+    <!--NAVIGATION BAR ENDS HERE-->
+	
+	<!--LOGIN/REGISTER FORM STARTS HERE-->
+    <div id='login-form' class='login-page'>
+        <div class="form-box">
+            <div class='button-box'>
+                <div id='btn'></div>
+                    <button type='button' onclick='login()' class='toggle-btn'>Log In</button>
+                    <button type='button' onclick='register()' class='toggle-btn'>Register</button>
+            </div>
+
+       		<form id='login' name="form" autocomplete="off" action="index.html" method="post" class='input-group-login' onsubmit="
+			return validated()">
+            	<input type='text' name="email" class='input-field' placeholder='Email Id' required >
+				<input type='password' name="password" class='input-field' placeholder='Enter Password' required>
+				<input type='checkbox' class='check-box'>Remember Password
+				<button type='submit' class='submit-btn' onClick="myFunction()">Log in</button>
+			</form>
+
+			<form id='register' class='input-group-register'>
+		    	<input type='text' class='input-field' placeholder='First Name' required>
+			    <input type='text' class='input-field' placeholder='Last Name ' required>
+			    <input type='email' class='input-field' placeholder='Email Id' required>
+			    <input type='password' class='input-field' placeholder='Enter Password' required>
+			    <input type='password' class='input-field' placeholder='Confirm Password'  required>
+			    <input type='checkbox' class='check-box'>I agree to the terms and conditions
+        	    <button type='submit'  class='submit-btn'>Register</button>
+	   	    </form>
+        </div>
+    </div>
+	<!--LOGIN/REGISTER FORM ENDS HERE-->
+	
+    <!--FOOTER SECTION STARTS HERE-->
+	<footer class="text-center text-white" style="background-color: #56382D" id="footer">
+		<div class="container">
+			<section class="inq">
+				<div class="row d-flex justify-content-center pt-4">
+					<div class="col-lg-8">
+						<h2 class="text-uppercase font-weight-bold text-decoration-none text-white">Contact the
+						Enquiry Service</h2>
+					</div>
+				</div>
+			</section>
+			<section class="dt">
+				<div class="row text-center d-flex justify-content-center pt-3">
+					<div class="col-md-3">
+						<h6 class="text-uppercase font-weight-bold text-decoration-none">
+							<a href="#" class="inqb"><i class="fa-solid fa-magnifying-glass fa-1x me-3"></i>Help
+							Finding Resources</a>
+						</h6>
+					</div>
+					<div class="col-md-3">
+						<h6 class="text-uppercase font-weight-bold">
+							<a href="#" class="inqb"><i class="fa fa-envelope fa-1x me-3"></i>Contact Us</a>
+						</h6>
+					</div>
+					<div class="col-md-3">
+						<h6 class="text-uppercase font-weight-bold">
+							<a href="#" class="inqb"><i class="fa-regular fa-message fa-1x me-3"></i>Ask a Librarian
+							Live Chat</a>
+						</h6>
+					</div>
+					<div class="col-md-3">
+						<h6 class="text-uppercase font-weight-bold">
+							<a href="#" class="inqb"><i class="fa-solid fa-circle-info fa-1x me-3"></i>Discover</a>
+						</h6>
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<div class="ct mt-3">
+			<h1>
+				<a class="text-white me-2">Connect to WIT Studio:</a>
+			</h1>
+			    <a href="" class="social-links me-3"><i class="fab fa-facebook-f fa-1x"></i></a>
+			    <a href="" class="social-links me-3"><i class="fab fa-twitter fa-1x"></i></a>
+		</div>
+		<div class="cp text-center p-3">&#169; 2022 Copyright: 
+            <a class="text-white" href="#">WIT STUDIO</a>
+		</div>
+	</footer>
+	<!--FOOTER SECTION ENDS HERE-->
+	
+	<!--LOGIN/REGISTRATION SCRIPT STARTS HERE-->
+	<script>
+        var x=document.getElementById('login');
+		var y=document.getElementById('register');
+		var z=document.getElementById('btn');
+		function register()
+		{
+			x.style.left='-400px';
+			y.style.left='50px';
+			z.style.left='110px';
+		}
+		function login()
+		{
+			x.style.left='50px';
+			y.style.left='450px';
+			z.style.left='0px';
+		}
+	</script>
+
+	<script>
+        var modal = document.getElementById('login-form');
+        window.onclick = function(event) 
+        {
+            if (event.target == modal) 
+            {
+                modal.style.display = "none";
+            }
+        }
+	</script>
+   	<!--LOGIN/REGISTRATION SCRIPT ENDS HERE-->
+
+    <!--SEPERATE POPPER AND BOOTSTRAP JS-->
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+	integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+	crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+	integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+	crossorigin="anonymous"></script>
+
+	<!--JQUERY-->
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/themes/smoothness/jquery-ui.css">
+	<link rel="stylesheet" href="/resources/demos/style.css">
+	<script
+	src="https://code.jquery.com/jquery-3.6.1.slim.js"
+	integrity="sha256-tXm+sa1uzsbFnbXt8GJqsgi2Tw+m4BLGDof6eUPjbtk="
+	crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+
+    <!--CUSTOM JAVASCRIPT-->
+    <script src="main.js"></script>
+</body>
+</html>
